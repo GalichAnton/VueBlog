@@ -3,23 +3,17 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12">
-          <h1 class="text-xs-center">Sign up</h1>
+          <h1 class="text-xs-center">Sign in</h1>
           <p class="text-xs-center">
-            <router-link :to="{ name: 'login' }"> Have an account?</router-link>
+            <router-link :to="{ name: 'register' }">
+              Need an account?
+            </router-link>
           </p>
           <app-validation-errors
             v-if="validationErrors"
             :validation-errors="validationErrors"
-          />
+          ></app-validation-errors>
           <form @submit.prevent="onSubmit">
-            <fieldset class="form-group">
-              <input
-                class="form-control form-control-lg"
-                type="text"
-                placeholder="Username"
-                v-model="username"
-              />
-            </fieldset>
             <fieldset class="form-group">
               <input
                 class="form-control form-control-lg"
@@ -40,7 +34,7 @@
               class="btn btn-lg btn-primary pull-xs-right"
               :disabled="isSubmitting"
             >
-              Sign Up
+              Sign In
             </button>
           </form>
         </div>
@@ -50,20 +44,19 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import AppValidationErrors from "@/components/ValidationErrors";
-import { actionTypes } from "@/store/modules/auth";
 import { mapState } from "vuex";
-export default defineComponent({
-  name: "appRegister",
+import AppValidationErrors from "@/components/ValidationErrors.vue";
+import { actionTypes } from "@/store/modules/auth";
+
+export default {
+  name: "AppLogin",
   components: {
     AppValidationErrors,
   },
   data() {
     return {
-      email: this.email,
-      password: this.password,
-      username: this.username,
+      email: "",
+      password: "",
     };
   },
   computed: {
@@ -74,19 +67,15 @@ export default defineComponent({
   },
   methods: {
     onSubmit() {
-      console.log("Submit");
       this.$store
-        .dispatch(actionTypes.register, {
+        .dispatch(actionTypes.login, {
           email: this.email,
           password: this.password,
-          username: this.username,
         })
-        .then((user) => {
+        .then(() => {
           this.$router.push({ name: "home" });
         });
     },
   },
-});
+};
 </script>
-
-<style scoped></style>

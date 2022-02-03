@@ -1,8 +1,6 @@
 <template>
   <ul class="error-messages">
-    <li v-for="errorMsg in errorsMsg" :key="errorMsg">
-      {errorMsg}
-    </li>
+    <li v-for="errorMsg in errorsMsg" :key="errorMsg">{{ errorMsg }}</li>
   </ul>
 </template>
 
@@ -17,9 +15,10 @@ export default {
   },
   computed: {
     errorsMsg() {
-      Object.keys(this.validationErrors).map(name =>{
-        const messages = this.validationErrors[name].join(', ')
-      })
+      return Object.keys(this.validationErrors).map((name) => {
+        const messages = this.validationErrors[name].join(", ");
+        return `${name} ${messages}`;
+      });
     },
   },
 };
