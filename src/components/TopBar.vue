@@ -1,12 +1,12 @@
 <template>
   <nav class="navbar navbar-light">
     <div class="container">
-      <router-link class="navbar-brand" :to="{ name: 'home' }">
+      <router-link class="navbar-brand" :to="{ name: 'GlobalFeed' }">
         MediumClone
       </router-link>
       <ul class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
-          <router-link class="nav-link" :to="{ name: 'home' }"
+          <router-link class="nav-link" :to="{ name: 'GlobalFeed' }"
             >Home</router-link
           >
         </li>
@@ -39,7 +39,7 @@
             </router-link>
           </li>
         </template>
-        <template v-if="!isLoggedIn">
+        <template v-if="isAnonymous">
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'login' }">
               Sign in
@@ -57,14 +57,16 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
+import { getterTypes } from "@/store/modules/auth";
 
 export default {
   name: "AppTopbar",
   computed: {
-    ...mapState({
-      currentUser: (state) => state.auth.currentUser,
-      isLoggedIn: (state) => state.auth.isLoggedIn,
+    ...mapGetters({
+      currentUser: getterTypes.currentUser,
+      isAnonymous: getterTypes.isAnonymous,
+      isLoggedIn: getterTypes.isLoggedIn,
     }),
   },
 };

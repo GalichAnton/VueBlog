@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
 import Register from "@/views/Register.vue";
 import Login from "@/views/Login.vue";
+import GlobalFeed from "@/views/GlobalFeed.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
-    component: Home,
+    name: "GlobalFeed",
+    component: GlobalFeed,
   },
   {
     path: "/register",

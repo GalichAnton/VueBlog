@@ -82,7 +82,7 @@ export default defineComponent({
           username: this.username,
         })
         .then((user) => {
-          this.$router.push({ name: "home" });
+          this.$router.push({ name: "GlobalFeed" });
         });
     },
   },
