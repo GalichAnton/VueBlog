@@ -11,11 +11,10 @@
     </div>
   </div>
 </template>
-
 <script>
 import AppFeed from "@/components/Feed.vue";
 export default {
-  name: "McvGlobalFeed",
+  name: "AppGlobalFeed",
   components: {
     AppFeed,
   },
